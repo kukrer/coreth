@@ -12,19 +12,19 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/core/state"
+	"github.com/kukrer/coreth/params"
 
-	"github.com/ava-labs/avalanchego/chains/atomic"
-	"github.com/ava-labs/avalanchego/codec"
-	"github.com/ava-labs/avalanchego/ids"
-	"github.com/ava-labs/avalanchego/snow"
-	"github.com/ava-labs/avalanchego/utils"
-	"github.com/ava-labs/avalanchego/utils/crypto"
-	"github.com/ava-labs/avalanchego/utils/hashing"
-	"github.com/ava-labs/avalanchego/utils/wrappers"
-	"github.com/ava-labs/avalanchego/vms/components/verify"
-	"github.com/ava-labs/avalanchego/vms/secp256k1fx"
+	"github.com/kukrer/savannahgo/chains/atomic"
+	"github.com/kukrer/savannahgo/codec"
+	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahgo/snow"
+	"github.com/kukrer/savannahgo/utils"
+	"github.com/kukrer/savannahgo/utils/crypto"
+	"github.com/kukrer/savannahgo/utils/hashing"
+	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahgo/vms/components/verify"
+	"github.com/kukrer/savannahgo/vms/secp256k1fx"
 )
 
 var (

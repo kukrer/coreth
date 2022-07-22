@@ -11,24 +11,24 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ava-labs/avalanchego/ids"
+	"github.com/kukrer/savannahgo/ids"
 
-	"github.com/ava-labs/coreth/ethdb/memorydb"
-	"github.com/ava-labs/coreth/params"
-	"github.com/ava-labs/coreth/sync/client/stats"
+	"github.com/kukrer/coreth/ethdb/memorydb"
+	"github.com/kukrer/coreth/params"
+	"github.com/kukrer/coreth/sync/client/stats"
 
-	"github.com/ava-labs/avalanchego/codec"
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/kukrer/savannahgo/codec"
+	"github.com/kukrer/savannahgo/version"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/peer"
-	"github.com/ava-labs/coreth/plugin/evm/message"
-	"github.com/ava-labs/coreth/trie"
+	"github.com/kukrer/coreth/core/types"
+	"github.com/kukrer/coreth/ethdb"
+	"github.com/kukrer/coreth/peer"
+	"github.com/kukrer/coreth/plugin/evm/message"
+	"github.com/kukrer/coreth/trie"
 )
 
 const (

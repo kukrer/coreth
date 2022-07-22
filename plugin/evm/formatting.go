@@ -6,10 +6,10 @@ package evm
 import (
 	"fmt"
 
-	"github.com/ava-labs/avalanchego/ids"
-	"github.com/ava-labs/avalanchego/utils/constants"
-	"github.com/ava-labs/avalanchego/utils/crypto"
-	"github.com/ava-labs/avalanchego/utils/formatting/address"
+	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahgo/utils/constants"
+	"github.com/kukrer/savannahgo/utils/crypto"
+	"github.com/kukrer/savannahgo/utils/formatting/address"
 	"github.com/ethereum/go-ethereum/common"
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 )

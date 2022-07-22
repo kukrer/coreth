@@ -32,11 +32,11 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ava-labs/coreth/consensus/dummy"
-	"github.com/ava-labs/coreth/core/rawdb"
-	"github.com/ava-labs/coreth/core/vm"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/consensus/dummy"
+	"github.com/kukrer/coreth/core/rawdb"
+	"github.com/kukrer/coreth/core/vm"
+	"github.com/kukrer/coreth/ethdb"
+	"github.com/kukrer/coreth/params"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 )

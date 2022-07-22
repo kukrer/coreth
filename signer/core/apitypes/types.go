@@ -32,7 +32,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/ava-labs/coreth/core/types"
+	"github.com/kukrer/coreth/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )

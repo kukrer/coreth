@@ -31,9 +31,9 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/core/types"
+	"github.com/kukrer/coreth/ethdb"
+	"github.com/kukrer/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"

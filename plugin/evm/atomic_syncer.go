@@ -9,10 +9,10 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/ava-labs/avalanchego/utils/wrappers"
+	"github.com/kukrer/savannahgo/utils/wrappers"
 
-	"github.com/ava-labs/coreth/plugin/evm/message"
-	syncclient "github.com/ava-labs/coreth/sync/client"
+	"github.com/kukrer/coreth/plugin/evm/message"
+	syncclient "github.com/kukrer/coreth/sync/client"
 	"github.com/ethereum/go-ethereum/common"
 )
 

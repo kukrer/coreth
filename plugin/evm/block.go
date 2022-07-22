@@ -12,12 +12,12 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/ava-labs/coreth/core/types"
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/core/types"
+	"github.com/kukrer/coreth/params"
 
-	"github.com/ava-labs/avalanchego/chains/atomic"
-	"github.com/ava-labs/avalanchego/ids"
-	"github.com/ava-labs/avalanchego/snow/choices"
+	"github.com/kukrer/savannahgo/chains/atomic"
+	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahgo/snow/choices"
 )
 
 var (

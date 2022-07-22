@@ -29,7 +29,7 @@ package trie
 import (
 	"testing"
 
-	"github.com/ava-labs/coreth/core/rawdb"
+	"github.com/kukrer/coreth/core/rawdb"
 )
 
 // Tests if the trie diffs are tracked correctly.

@@ -22,9 +22,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ava-labs/coreth/core/state"
-	"github.com/ava-labs/coreth/core/vm"
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/core/state"
+	"github.com/kukrer/coreth/core/vm"
+	"github.com/kukrer/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 )
 

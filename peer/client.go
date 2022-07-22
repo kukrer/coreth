@@ -6,9 +6,9 @@ package peer
 import (
 	"errors"
 
-	"github.com/ava-labs/avalanchego/ids"
+	"github.com/kukrer/savannahgo/ids"
 
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/kukrer/savannahgo/version"
 )
 
 var (

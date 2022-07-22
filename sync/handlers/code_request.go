@@ -7,14 +7,14 @@ import (
 	"context"
 	"time"
 
-	"github.com/ava-labs/avalanchego/codec"
-	"github.com/ava-labs/avalanchego/ids"
+	"github.com/kukrer/savannahgo/codec"
+	"github.com/kukrer/savannahgo/ids"
 
-	"github.com/ava-labs/coreth/core/rawdb"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/params"
-	"github.com/ava-labs/coreth/plugin/evm/message"
-	"github.com/ava-labs/coreth/sync/handlers/stats"
+	"github.com/kukrer/coreth/core/rawdb"
+	"github.com/kukrer/coreth/ethdb"
+	"github.com/kukrer/coreth/params"
+	"github.com/kukrer/coreth/plugin/evm/message"
+	"github.com/kukrer/coreth/sync/handlers/stats"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 )

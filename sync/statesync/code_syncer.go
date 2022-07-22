@@ -9,11 +9,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ava-labs/avalanchego/ids"
-	"github.com/ava-labs/coreth/core/rawdb"
-	"github.com/ava-labs/coreth/ethdb"
-	"github.com/ava-labs/coreth/params"
-	statesyncclient "github.com/ava-labs/coreth/sync/client"
+	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/coreth/core/rawdb"
+	"github.com/kukrer/coreth/ethdb"
+	"github.com/kukrer/coreth/params"
+	statesyncclient "github.com/kukrer/coreth/sync/client"
 	"github.com/ethereum/go-ethereum/common"
 )
 

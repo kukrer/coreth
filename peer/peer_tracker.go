@@ -8,13 +8,13 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/ava-labs/avalanchego/ids"
-	utils_math "github.com/ava-labs/avalanchego/utils/math"
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/kukrer/savannahgo/ids"
+	utils_math "github.com/kukrer/savannahgo/utils/math"
+	"github.com/kukrer/savannahgo/version"
 
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/ava-labs/coreth/metrics"
+	"github.com/kukrer/coreth/metrics"
 )
 
 const (

@@ -8,12 +8,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ava-labs/coreth/params"
+	"github.com/kukrer/coreth/params"
 
-	"github.com/ava-labs/avalanchego/snow"
-	commonEng "github.com/ava-labs/avalanchego/snow/engine/common"
-	"github.com/ava-labs/avalanchego/utils/timer"
-	"github.com/ava-labs/coreth/core"
+	"github.com/kukrer/savannahgo/snow"
+	commonEng "github.com/kukrer/savannahgo/snow/engine/common"
+	"github.com/kukrer/savannahgo/utils/timer"
+	"github.com/kukrer/coreth/core"
 	"github.com/ethereum/go-ethereum/log"
 )
 
