@@ -27,7 +27,7 @@ if version_lt "$(go_version)" "$go_version_minimum"; then
     exit 1
 fi
 
-# Avalanche root directory
+# Savannahnode root directory
 CORETH_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )"; cd .. && pwd )
 
 # Load the versions
@@ -50,4 +50,4 @@ coreth_commit=${CORETH_COMMIT:-$( git rev-list -1 HEAD )}
 
 # Build Coreth, which is run as a subprocess
 echo "Building Coreth Version: $coreth_version; GitCommit: $coreth_commit"
-go build -ldflags "-X github.com/ava-labs/coreth/plugin/evm.GitCommit=$coreth_commit -X github.com/ava-labs/coreth/plugin/evm.Version=$coreth_version" -o "$binary_path" "plugin/"*.go
+go build -ldflags "-X github.com/kukrer/coreth/plugin/evm.GitCommit=$coreth_commit -X github.com/savannahnode/coreth/plugin/evm.Version=$coreth_version" -o "$binary_path" "plugin/"*.go

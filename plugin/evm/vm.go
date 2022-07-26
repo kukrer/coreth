@@ -418,6 +418,12 @@ func (vm *VM) Initialize(
 	case g.Config.ChainID.Cmp(params.AvalancheFujiChainID) == 0:
 		g.Config = params.AvalancheFujiChainConfig
 		phase0BlockValidator.extDataHashes = fujiExtDataHashes
+	case g.Config.ChainID.Cmp(params.AvalancheSavannahChainID) == 0:
+		g.Config = params.AvalancheSavannahChainConfig
+		phase0BlockValidator.extDataHashes = savannahExtDataHashes
+	case g.Config.ChainID.Cmp(params.AvalancheMarulaChainID) == 0:
+		g.Config = params.AvalancheMarulaChainConfig
+		phase0BlockValidator.extDataHashes = marulaExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheLocalChainID) == 0:
 		g.Config = params.AvalancheLocalChainConfig
 	}
@@ -436,6 +442,8 @@ func (vm *VM) Initialize(
 	// config, free fuji)
 	fujiExtDataHashes = nil
 	mainnetExtDataHashes = nil
+	marulaExtDataHashes = nil
+	savannahExtDataHashes = nil
 
 	vm.chainID = g.Config.ChainID
 
