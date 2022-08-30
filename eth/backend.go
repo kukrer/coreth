@@ -64,9 +64,7 @@ import (
 // Deprecated: use ethconfig.Config instead.
 type Config = ethconfig.Config
 
-var (
-	DefaultSettings Settings = Settings{MaxBlocksPerRequest: 2000}
-)
+var DefaultSettings Settings = Settings{MaxBlocksPerRequest: 2000}
 
 type Settings struct {
 	MaxBlocksPerRequest int64 // Maximum number of blocks to serve per getLogs request
@@ -189,7 +187,7 @@ func New(
 	}
 
 	bcVersion := rawdb.ReadDatabaseVersion(chainDb)
-	var dbVer = "<nil>"
+	dbVer := "<nil>"
 	if bcVersion != nil {
 		dbVer = fmt.Sprintf("%d", *bcVersion)
 	}
@@ -289,27 +287,22 @@ func (s *Ethereum) APIs() []rpc.API {
 	return append(apis, []rpc.API{
 		{
 			Namespace: "eth",
-			Version:   "1.0",
 			Service:   NewEthereumAPI(s),
 			Name:      "eth",
 		}, {
 			Namespace: "eth",
-			Version:   "1.0",
 			Service:   filters.NewFilterAPI(s.APIBackend, false, 5*time.Minute),
 			Name:      "eth-filter",
 		}, {
 			Namespace: "admin",
-			Version:   "1.0",
 			Service:   NewAdminAPI(s),
 			Name:      "admin",
 		}, {
 			Namespace: "debug",
-			Version:   "1.0",
 			Service:   NewDebugAPI(s),
 			Name:      "debug",
 		}, {
 			Namespace: "net",
-			Version:   "1.0",
 			Service:   s.netRPCService,
 			Name:      "net",
 		},

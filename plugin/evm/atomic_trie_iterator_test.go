@@ -6,19 +6,17 @@ package evm
 import (
 	"testing"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/database/memdb"
-	"github.com/kukrer/savannahgo/database/versiondb"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils"
-	"github.com/kukrer/savannahgo/utils/logging"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/database/memdb"
+	"github.com/kukrer/savannahnode/database/versiondb"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 )
 
 func testSharedMemory() atomic.SharedMemory {
-	m := &atomic.Memory{}
-	m.Initialize(logging.NoLog{}, memdb.New())
+	m := atomic.NewMemory(memdb.New())
 	return m.NewSharedMemory(testCChainID)
 }
 

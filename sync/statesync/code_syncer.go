@@ -103,20 +103,15 @@ func (c *codeSyncer) start(ctx context.Context) {
 // Clean out any codeToFetch markers from the database that are no longer needed and
 // add any outstanding markers to the queue.
 func (c *codeSyncer) addCodeToFetchFromDBToQueue() error {
-	codeToFetchIterator := c.DB.NewIterator(rawdb.CodeToFetchPrefix, nil)
-	defer codeToFetchIterator.Release()
+	it := rawdb.NewCodeToFetchIterator(c.DB)
+	defer it.Release()
 
 	batch := c.DB.NewBatch()
 	codeHashes := make([]common.Hash, 0)
-	for codeToFetchIterator.Next() {
-		codeToFetchKey := codeToFetchIterator.Key()
-		if len(codeToFetchKey) != len(rawdb.CodeToFetchPrefix)+common.HashLength {
-			continue
-		}
-
-		codeHash := common.BytesToHash(codeToFetchKey[len(rawdb.CodeToFetchPrefix):])
+	for it.Next() {
+		codeHash := common.BytesToHash(it.Key()[len(rawdb.CodeToFetchPrefix):])
 		// If we already have the codeHash, delete the marker from the database and continue
-		if rawdb.HasCodeWithPrefix(c.DB, codeHash) {
+		if rawdb.HasCode(c.DB, codeHash) {
 			rawdb.DeleteCodeToFetch(batch, codeHash)
 			// Write the batch to disk if it has reached the ideal batch size.
 			if batch.ValueSize() > ethdb.IdealBatchSize {
@@ -130,7 +125,7 @@ func (c *codeSyncer) addCodeToFetchFromDBToQueue() error {
 
 		codeHashes = append(codeHashes, codeHash)
 	}
-	if err := codeToFetchIterator.Error(); err != nil {
+	if err := it.Error(); err != nil {
 		return fmt.Errorf("failed to iterate code entries to fetch: %w", err)
 	}
 	if batch.ValueSize() > 0 {
@@ -212,7 +207,7 @@ func (c *codeSyncer) addCode(codeHashes []common.Hash) error {
 	for _, codeHash := range codeHashes {
 		// Add the code hash to the queue if it's not already on the queue and we do not already have it
 		// in the database.
-		if !c.outstandingCodeHashes.Contains(ids.ID(codeHash)) && !rawdb.HasCodeWithPrefix(c.DB, codeHash) {
+		if !c.outstandingCodeHashes.Contains(ids.ID(codeHash)) && !rawdb.HasCode(c.DB, codeHash) {
 			selectedCodeHashes = append(selectedCodeHashes, codeHash)
 			c.outstandingCodeHashes.Add(ids.ID(codeHash))
 			rawdb.AddCodeToFetch(batch, codeHash)

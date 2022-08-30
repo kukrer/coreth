@@ -488,8 +488,7 @@ func TestApplyToSharedMemory(t *testing.T) {
 			writeTxs(t, repo, 1, test.lastAcceptedHeight+1, constTxsPerHeight(2), nil, operationsMap)
 
 			// Initialize atomic repository
-			m := &atomic.Memory{}
-			m.Initialize(logging.NoLog{}, db)
+			m := atomic.NewMemory(db)
 			sharedMemories := newSharedMemories(m, testCChainID, blockChainID)
 			atomicTrie, err := newAtomicTrie(db, sharedMemories.thisChain, nil, repo, codec, test.lastAcceptedHeight, test.commitInterval)
 			assert.NoError(t, err)
@@ -541,7 +540,6 @@ func TestApplyToSharedMemory(t *testing.T) {
 			assert.False(t, hasMarker)
 		})
 	}
-
 }
 
 func BenchmarkAtomicTrieInit(b *testing.B) {

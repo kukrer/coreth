@@ -35,6 +35,7 @@ import (
 	"time"
 
 	"github.com/kukrer/coreth/eth"
+	"github.com/kukrer/coreth/vmerrs"
 
 	"github.com/kukrer/coreth/accounts/abi"
 	"github.com/kukrer/coreth/accounts/abi/bind"
@@ -137,7 +138,7 @@ func (b *SimulatedBackend) Close() error {
 
 // Commit imports all the pending transactions as a single block and starts a
 // fresh new state.
-func (b *SimulatedBackend) Commit(accept bool) {
+func (b *SimulatedBackend) Commit(accept bool) common.Hash {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 
@@ -150,9 +151,13 @@ func (b *SimulatedBackend) Commit(accept bool) {
 		}
 		b.blockchain.DrainAcceptorQueue()
 	}
+	blockHash := b.acceptedBlock.Hash()
+
 	// Using the last inserted block here makes it possible to build on a side
 	// chain after a fork.
 	b.rollback(b.acceptedBlock)
+
+	return blockHash
 }
 
 // Rollback aborts all pending transactions, reverting to the last committed state.
@@ -609,7 +614,7 @@ func (b *SimulatedBackend) EstimateGas(ctx context.Context, call interfaces.Call
 			return 0, err
 		}
 		if failed {
-			if result != nil && result.Err != vm.ErrOutOfGas {
+			if result != nil && result.Err != vmerrs.ErrOutOfGas {
 				if len(result.Revert()) > 0 {
 					return 0, newRevertError(result)
 				}

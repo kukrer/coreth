@@ -60,7 +60,7 @@ func (s Storage) String() (str string) {
 }
 
 func (s Storage) Copy() Storage {
-	cpy := make(Storage)
+	cpy := make(Storage, len(s))
 	for key, value := range s {
 		cpy[key] = value
 	}
@@ -402,7 +402,7 @@ func (s *stateObject) CommitTrie(db Database) (int, error) {
 	if metrics.EnabledExpensive {
 		defer func(start time.Time) { s.db.StorageCommits += time.Since(start) }(time.Now())
 	}
-	root, committed, err := s.trie.Commit(nil)
+	root, committed, err := s.trie.Commit(nil, false)
 	if err == nil {
 		s.data.Root = root
 	}

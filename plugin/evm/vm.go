@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"math/big"
 	"os"
 	"path/filepath"
@@ -165,14 +166,7 @@ var (
 	errInvalidNonce                   = errors.New("invalid nonce")
 	errConflictingAtomicInputs        = errors.New("invalid block due to conflicting atomic inputs")
 	errUnclesUnsupported              = errors.New("uncles unsupported")
-	errTxHashMismatch                 = errors.New("txs hash does not match header")
-	errUncleHashMismatch              = errors.New("uncle hash mismatch")
 	errRejectedParent                 = errors.New("rejected parent")
-	errInvalidDifficulty              = errors.New("invalid difficulty")
-	errInvalidBlockVersion            = errors.New("invalid block version")
-	errInvalidMixDigest               = errors.New("invalid mix digest")
-	errInvalidExtDataHash             = errors.New("invalid extra data hash")
-	errHeaderExtraDataTooBig          = errors.New("header extra data too big")
 	errInsufficientFundsForFee        = errors.New("insufficient AVAX funds to pay transaction fee")
 	errNoEVMOutputs                   = errors.New("tx has no EVM outputs")
 	errNilBaseFeeApricotPhase3        = errors.New("nil base fee is invalid after apricotPhase3")
@@ -209,7 +203,6 @@ func init() {
 	// Preserving the log level allows us to update the root handler while writing to the original
 	// [os.Stderr] that is being piped through to the logger via the rpcchainvm.
 	originalStderr = os.Stderr
-	log.Root().SetHandler(log.LvlFilterHandler(log.LvlDebug, log.StreamHandler(originalStderr, log.TerminalFormat(false))))
 }
 
 // VM implements the snowman.ChainVM interface
@@ -248,6 +241,8 @@ type VM struct {
 
 	toEngine chan<- commonEng.Message
 
+	syntacticBlockValidator BlockValidator
+
 	// [atomicTxRepository] maintains two indexes on accepted atomic txs.
 	// - txID to accepted atomic tx
 	// - block height to list of atomic txs accepted on block at that height
@@ -257,8 +252,7 @@ type VM struct {
 
 	builder *blockBuilder
 
-	gossiper    Gossiper
-	gossipStats GossipStats
+	gossiper Gossiper
 
 	baseCodec codec.Registry
 	codec     codec.Manager
@@ -284,6 +278,7 @@ type VM struct {
 	bootstrapped bool
 	IsPlugin     bool
 
+	logger CorethLogger
 	// State sync server and client
 	StateSyncServer
 	StateSyncClient
@@ -300,47 +295,6 @@ func (vm *VM) Clock() *mockable.Clock { return &vm.clock }
 
 // Logger implements the secp256k1fx interface
 func (vm *VM) Logger() logging.Logger { return vm.ctx.Log }
-
-// setLogLevel initializes logger and sets the log level with the original [os.StdErr] interface
-// along with the context logger.
-func (vm *VM) setLogLevel(logLevel log.Lvl) {
-	prefix, err := vm.ctx.BCLookup.PrimaryAlias(vm.ctx.ChainID)
-	if err != nil {
-		prefix = vm.ctx.ChainID.String()
-	}
-	prefix = fmt.Sprintf("<%s Chain>", prefix)
-	format := CorethFormat(prefix, vm.IsPlugin)
-	if vm.IsPlugin {
-		log.Root().SetHandler(log.LvlFilterHandler(logLevel, log.StreamHandler(originalStderr, format)))
-	} else {
-		log.Root().SetHandler(log.LvlFilterHandler(logLevel, log.StreamHandler(vm.ctx.Log, format)))
-	}
-}
-
-func CorethFormat(prefix string, doCopy bool) log.Format {
-	return log.FormatFunc(func(r *log.Record) []byte {
-		location := fmt.Sprintf("%+v", r.Call)
-		newMsg := fmt.Sprintf("%s %s: %s", prefix, location, r.Msg)
-		var b []byte
-		if doCopy {
-			// need to deep copy since we're using a multihandler
-			// as a result it will alter R.msg twice.
-			newRecord := log.Record{
-				Time:     r.Time,
-				Lvl:      r.Lvl,
-				Msg:      newMsg,
-				Ctx:      r.Ctx,
-				Call:     r.Call,
-				KeyNames: r.KeyNames,
-			}
-			b = log.TerminalFormat(false).Format(&newRecord)
-			return b
-		}
-		r.Msg = newMsg
-		b = log.TerminalFormat(false).Format(r)
-		return b
-	})
-}
 
 /*
  ******************************************************************************
@@ -374,20 +328,26 @@ func (vm *VM) Initialize(
 		return err
 	}
 
-	// Set log level
-	logLevel, err := log.LvlFromString(vm.config.LogLevel)
+	vm.ctx = ctx
+
+	// Create logger
+	alias, err := vm.ctx.BCLookup.PrimaryAlias(vm.ctx.ChainID)
+	if err != nil {
+		alias = vm.ctx.ChainID.String()
+	}
+
+	var writer io.Writer = vm.ctx.Log
+	if vm.IsPlugin {
+		writer = originalStderr
+	}
+
+	corethLogger, err := InitLogger(alias, vm.config.LogLevel, vm.config.LogJSONFormat, writer)
 	if err != nil {
 		return fmt.Errorf("failed to initialize logger due to: %w ", err)
 	}
+	vm.logger = corethLogger
 
-	vm.ctx = ctx
-	vm.setLogLevel(logLevel)
-	if b, err := json.Marshal(vm.config); err == nil {
-		log.Info("Initializing Coreth VM", "Version", Version, "Config", string(b))
-	} else {
-		// Log a warning message since we have already successfully unmarshalled into the struct
-		log.Warn("Problem initializing Coreth VM", "Version", Version, "Config", string(b), "err", err)
-	}
+	log.Info("Initializing Coreth VM", "Version", Version, "Config", vm.config)
 
 	if len(fxs) > 0 {
 		return errUnsupportedFXs
@@ -410,23 +370,25 @@ func (vm *VM) Initialize(
 		return err
 	}
 
+	var extDataHashes map[common.Hash]common.Hash
 	// Set the chain config for mainnet/fuji chain IDs
 	switch {
 	case g.Config.ChainID.Cmp(params.AvalancheMainnetChainID) == 0:
 		g.Config = params.AvalancheMainnetChainConfig
-		phase0BlockValidator.extDataHashes = mainnetExtDataHashes
+		extDataHashes = mainnetExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheFujiChainID) == 0:
 		g.Config = params.AvalancheFujiChainConfig
-		phase0BlockValidator.extDataHashes = fujiExtDataHashes
+		extDataHashes = fujiExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheSavannahChainID) == 0:
 		g.Config = params.AvalancheSavannahChainConfig
-		phase0BlockValidator.extDataHashes = savannahExtDataHashes
+		extDataHashes = savannahExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheMarulaChainID) == 0:
 		g.Config = params.AvalancheMarulaChainConfig
-		phase0BlockValidator.extDataHashes = marulaExtDataHashes
+		extDataHashes = marulaExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheLocalChainID) == 0:
 		g.Config = params.AvalancheLocalChainConfig
 	}
+	vm.syntacticBlockValidator = NewBlockValidator(extDataHashes)
 
 	// Ensure that non-standard commit interval is only allowed for the local network
 	if g.Config.ChainID.Cmp(params.AvalancheLocalChainID) != 0 {
@@ -596,15 +558,6 @@ func (vm *VM) initializeChain(lastAcceptedHash common.Hash) error {
 	// start goroutines to update the tx pool gas minimum gas price when upgrades go into effect
 	vm.handleGasPriceUpdates()
 
-	// start goroutines to manage block building
-	//
-	// NOTE: gossip network must be initialized first otherwise ETH tx gossip will
-	// not work.
-	vm.gossipStats = NewGossipStats()
-	vm.gossiper = vm.createGossiper()
-	vm.builder = vm.NewBlockBuilder(vm.toEngine)
-	vm.builder.awaitSubmittedTxs()
-
 	vm.eth.Start()
 	return vm.initChainState(vm.blockChain.LastAcceptedBlock())
 }
@@ -672,14 +625,12 @@ func (vm *VM) initializeStateSyncServer() {
 }
 
 func (vm *VM) initChainState(lastAcceptedBlock *types.Block) error {
-	isApricotPhase5 := vm.chainConfig.IsApricotPhase5(new(big.Int).SetUint64(lastAcceptedBlock.Time()))
-	atomicTxs, err := ExtractAtomicTxs(lastAcceptedBlock.ExtData(), isApricotPhase5, vm.codec)
+	block, err := vm.newBlock(lastAcceptedBlock)
 	if err != nil {
-		return fmt.Errorf(
-			"error extracting atomic txs when setting chain state, height=%d, hash=%s, err=%w",
-			lastAcceptedBlock.NumberU64(), lastAcceptedBlock.Hash(), err,
-		)
+		return fmt.Errorf("failed to create block wrapper for the last accepted block: %w", err)
 	}
+	block.status = choices.Accepted
+
 	config := &chain.Config{
 		DecidedCacheSize:    decidedCacheSize,
 		MissingCacheSize:    missingCacheSize,
@@ -688,13 +639,7 @@ func (vm *VM) initChainState(lastAcceptedBlock *types.Block) error {
 		GetBlock:            vm.getBlock,
 		UnmarshalBlock:      vm.parseBlock,
 		BuildBlock:          vm.buildBlock,
-		LastAcceptedBlock: &Block{
-			id:        ids.ID(lastAcceptedBlock.Hash()),
-			ethBlock:  lastAcceptedBlock,
-			vm:        vm,
-			status:    choices.Accepted,
-			atomicTxs: atomicTxs,
-		},
+		LastAcceptedBlock:   block,
 	}
 
 	// Register chain state metrics
@@ -706,13 +651,6 @@ func (vm *VM) initChainState(lastAcceptedBlock *types.Block) error {
 	vm.State = state
 
 	return vm.multiGatherer.Register(chainStateMetricsPrefix, chainStateRegisterer)
-}
-
-// initGossipHandling sets the gossip handler to use the push gossiper if ApricotPhase4 (activation of Snowman++) is enabled
-func (vm *VM) initGossipHandling() {
-	if vm.chainConfig.ApricotPhase4BlockTimestamp != nil {
-		vm.Network.SetGossipHandler(NewGossipHandler(vm))
-	}
 }
 
 func (vm *VM) createConsensusCallbacks() *dummy.ConsensusCallbacks {
@@ -953,13 +891,23 @@ func (vm *VM) SetState(state snow.State) error {
 		}
 		return vm.fx.Bootstrapping()
 	case snow.NormalOp:
-		// Initialize gossip handling once we enter normal operation as there is no need to handle mempool gossip before this point.
-		vm.initGossipHandling()
+		// Initialize goroutines related to block building once we enter normal operation as there is no need to handle mempool gossip before this point.
+		vm.initBlockBuilding()
 		vm.bootstrapped = true
 		return vm.fx.Bootstrapped()
 	default:
 		return snow.ErrUnknownState
 	}
+}
+
+// initBlockBuilding starts goroutines to manage block building
+func (vm *VM) initBlockBuilding() {
+	// NOTE: gossip network must be initialized first otherwise ETH tx gossip will not work.
+	gossipStats := NewGossipStats()
+	vm.gossiper = vm.createGossiper(gossipStats)
+	vm.builder = vm.NewBlockBuilder(vm.toEngine)
+	vm.builder.awaitSubmittedTxs()
+	vm.Network.SetGossipHandler(NewGossipHandler(vm, gossipStats))
 }
 
 // setAppRequestHandlers sets the request handlers for the VM to serve state sync
@@ -1008,18 +956,14 @@ func (vm *VM) buildBlock() (snowman.Block, error) {
 		return nil, err
 	}
 
-	isApricotPhase5 := vm.chainConfig.IsApricotPhase5(new(big.Int).SetUint64(block.Time()))
-	atomicTxs, err := ExtractAtomicTxs(block.ExtData(), isApricotPhase5, vm.codec)
+	// Note: the status of block is set by ChainState
+	blk, err := vm.newBlock(block)
 	if err != nil {
 		vm.mempool.DiscardCurrentTxs()
 		return nil, err
 	}
-	// Note: the status of block is set by ChainState
-	blk := &Block{
-		id:        ids.ID(block.Hash()),
-		ethBlock:  block,
-		vm:        vm,
-		atomicTxs: atomicTxs,
+	if err != nil {
+		return nil, err
 	}
 
 	// Verify is called on a non-wrapped block here, such that this
@@ -1053,17 +997,10 @@ func (vm *VM) parseBlock(b []byte) (snowman.Block, error) {
 		return nil, err
 	}
 
-	isApricotPhase5 := vm.chainConfig.IsApricotPhase5(new(big.Int).SetUint64(ethBlock.Time()))
-	atomicTxs, err := ExtractAtomicTxs(ethBlock.ExtData(), isApricotPhase5, vm.codec)
+	// Note: the status of block is set by ChainState
+	block, err := vm.newBlock(ethBlock)
 	if err != nil {
 		return nil, err
-	}
-	// Note: the status of block is set by ChainState
-	block := &Block{
-		id:        ids.ID(ethBlock.Hash()),
-		ethBlock:  ethBlock,
-		vm:        vm,
-		atomicTxs: atomicTxs,
 	}
 	// Performing syntactic verification in ParseBlock allows for
 	// short-circuiting bad blocks before they are processed by the VM.
@@ -1091,19 +1028,8 @@ func (vm *VM) getBlock(id ids.ID) (snowman.Block, error) {
 	if ethBlock == nil {
 		return nil, database.ErrNotFound
 	}
-	isApricotPhase5 := vm.chainConfig.IsApricotPhase5(new(big.Int).SetUint64(ethBlock.Time()))
-	atomicTxs, err := ExtractAtomicTxs(ethBlock.ExtData(), isApricotPhase5, vm.codec)
-	if err != nil {
-		return nil, err
-	}
 	// Note: the status of block is set by ChainState
-	blk := &Block{
-		id:        ids.ID(ethBlock.Hash()),
-		ethBlock:  ethBlock,
-		vm:        vm,
-		atomicTxs: atomicTxs,
-	}
-	return blk, nil
+	return vm.newBlock(ethBlock)
 }
 
 // SetPreference sets what the current tail of the chain is
@@ -1625,24 +1551,6 @@ func (vm *VM) GetCurrentNonce(address common.Address) (uint64, error) {
 func (vm *VM) currentRules() params.Rules {
 	header := vm.eth.APIBackend.CurrentHeader()
 	return vm.chainConfig.AvalancheRules(header.Number, big.NewInt(int64(header.Time)))
-}
-
-// getBlockValidator returns the block validator that should be used for a block that
-// follows the ruleset defined by [rules]
-func (vm *VM) getBlockValidator(rules params.Rules) BlockValidator {
-	switch {
-	case rules.IsApricotPhase5:
-		return phase5BlockValidator
-	case rules.IsApricotPhase4:
-		return phase4BlockValidator
-	case rules.IsApricotPhase3:
-		return phase3BlockValidator
-	case rules.IsApricotPhase2, rules.IsApricotPhase1:
-		// Note: the phase1BlockValidator is used in both apricot phase1 and phase2
-		return phase1BlockValidator
-	default:
-		return phase0BlockValidator
-	}
 }
 
 func (vm *VM) startContinuousProfiler() {
