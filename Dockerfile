@@ -8,7 +8,7 @@ ARG SAVANNAH_VERSION
 RUN mkdir -p $GOPATH/src/github.com/kukrer
 WORKDIR $GOPATH/src/github.com/kukrer
 
-RUN git clone -b $SAVANNAH_VERSION --single-branch https://github.com/kukrer/savannahgo.git
+RUN git clone -b $SAVANNAH_VERSION --single-branch https://github.com/kukrer/savannahnode.git
 
 # Copy coreth repo into desired location
 COPY . coreth
