@@ -7,14 +7,14 @@ import (
 	"math/big"
 	"math/rand"
 
-	"github.com/kukrer/savannahgo/utils"
+	"github.com/kukrer/savannahnode/utils"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/codec/linearcodec"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/codec/linearcodec"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 	"github.com/kukrer/coreth/core/state"
 	"github.com/kukrer/coreth/params"
 )

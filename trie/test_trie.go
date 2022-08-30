@@ -10,7 +10,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 	"github.com/kukrer/coreth/accounts/keystore"
 	"github.com/kukrer/coreth/core/types"
 

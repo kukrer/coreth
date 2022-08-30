@@ -10,12 +10,12 @@ import (
 	"github.com/kukrer/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/constants"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/vms/components/avax"
-	"github.com/kukrer/savannahgo/vms/secp256k1fx"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/constants"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/vms/components/avax"
+	"github.com/kukrer/savannahnode/vms/secp256k1fx"
 )
 
 // createImportTxOptions adds a UTXO to shared memory and generates a list of import transactions sending this UTXO

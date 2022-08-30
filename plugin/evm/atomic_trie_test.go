@@ -11,14 +11,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/database"
-	"github.com/kukrer/savannahgo/database/leveldb"
-	"github.com/kukrer/savannahgo/database/memdb"
-	"github.com/kukrer/savannahgo/database/versiondb"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/logging"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/database"
+	"github.com/kukrer/savannahnode/database/leveldb"
+	"github.com/kukrer/savannahnode/database/memdb"
+	"github.com/kukrer/savannahnode/database/versiondb"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/logging"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 
 	"github.com/ethereum/go-ethereum/common"
 )

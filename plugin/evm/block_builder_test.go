@@ -11,7 +11,7 @@ import (
 
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/snow"
+	"github.com/kukrer/savannahnode/snow"
 )
 
 func TestBlockBuilderShutsDown(t *testing.T) {

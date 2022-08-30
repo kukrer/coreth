@@ -6,10 +6,10 @@ package evm
 import (
 	"fmt"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/codec/linearcodec"
-	"github.com/kukrer/savannahgo/utils/wrappers"
-	"github.com/kukrer/savannahgo/vms/secp256k1fx"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/codec/linearcodec"
+	"github.com/kukrer/savannahnode/utils/wrappers"
+	"github.com/kukrer/savannahnode/vms/secp256k1fx"
 )
 
 // Codec does serialization and deserialization

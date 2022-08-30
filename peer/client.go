@@ -6,9 +6,9 @@ package peer
 import (
 	"errors"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 
-	"github.com/kukrer/savannahgo/version"
+	"github.com/kukrer/savannahnode/version"
 )
 
 var (

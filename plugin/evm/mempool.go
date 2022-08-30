@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kukrer/savannahgo/cache"
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/cache"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/metrics"
 	"github.com/ethereum/go-ethereum/log"
 )

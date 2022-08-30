@@ -9,7 +9,7 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 
 	"github.com/kukrer/coreth/plugin/evm/message"
 	syncclient "github.com/kukrer/coreth/sync/client"

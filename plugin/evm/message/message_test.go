@@ -7,8 +7,8 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/kukrer/savannahgo/utils"
-	"github.com/kukrer/savannahgo/utils/units"
+	"github.com/kukrer/savannahnode/utils"
+	"github.com/kukrer/savannahnode/utils/units"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -8,8 +8,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/kukrer/coreth/peer"
 	"github.com/kukrer/coreth/plugin/evm/message"

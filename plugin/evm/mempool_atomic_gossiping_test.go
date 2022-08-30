@@ -8,11 +8,11 @@ import (
 
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/vms/components/avax"
-	"github.com/kukrer/savannahgo/vms/components/chain"
-	"github.com/kukrer/savannahgo/vms/secp256k1fx"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/vms/components/avax"
+	"github.com/kukrer/savannahnode/vms/components/chain"
+	"github.com/kukrer/savannahnode/vms/secp256k1fx"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -11,14 +11,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/kukrer/coreth/ethdb/memorydb"
 	"github.com/kukrer/coreth/params"
 	"github.com/kukrer/coreth/sync/client/stats"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/version"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/version"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"

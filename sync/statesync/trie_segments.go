@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 	"github.com/kukrer/coreth/core/rawdb"
 	"github.com/kukrer/coreth/ethdb"
 	"github.com/kukrer/coreth/plugin/evm/message"

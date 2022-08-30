@@ -4,9 +4,9 @@
 package evm
 
 import (
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow"
-	"github.com/kukrer/savannahgo/vms"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow"
+	"github.com/kukrer/savannahnode/vms"
 )
 
 var (

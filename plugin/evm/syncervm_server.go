@@ -6,8 +6,8 @@ package evm
 import (
 	"fmt"
 
-	"github.com/kukrer/savannahgo/database"
-	"github.com/kukrer/savannahgo/snow/engine/snowman/block"
+	"github.com/kukrer/savannahnode/database"
+	"github.com/kukrer/savannahnode/snow/engine/snowman/block"
 
 	"github.com/kukrer/coreth/core"
 	"github.com/kukrer/coreth/plugin/evm/message"

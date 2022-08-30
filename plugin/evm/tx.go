@@ -15,16 +15,16 @@ import (
 	"github.com/kukrer/coreth/core/state"
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow"
-	"github.com/kukrer/savannahgo/utils"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/utils/hashing"
-	"github.com/kukrer/savannahgo/utils/wrappers"
-	"github.com/kukrer/savannahgo/vms/components/verify"
-	"github.com/kukrer/savannahgo/vms/secp256k1fx"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow"
+	"github.com/kukrer/savannahnode/utils"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/utils/hashing"
+	"github.com/kukrer/savannahnode/utils/wrappers"
+	"github.com/kukrer/savannahnode/vms/components/verify"
+	"github.com/kukrer/savannahnode/vms/secp256k1fx"
 )
 
 var (

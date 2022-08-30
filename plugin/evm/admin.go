@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kukrer/savannahgo/api"
-	"github.com/kukrer/savannahgo/utils/profiler"
+	"github.com/kukrer/savannahnode/api"
+	"github.com/kukrer/savannahnode/utils/profiler"
 	"github.com/ethereum/go-ethereum/log"
 )
 

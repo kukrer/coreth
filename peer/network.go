@@ -14,11 +14,11 @@ import (
 
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow/engine/common"
-	"github.com/kukrer/savannahgo/snow/validators"
-	"github.com/kukrer/savannahgo/version"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow/engine/common"
+	"github.com/kukrer/savannahnode/snow/validators"
+	"github.com/kukrer/savannahnode/version"
 
 	"github.com/kukrer/coreth/peer/stats"
 	"github.com/kukrer/coreth/plugin/evm/message"

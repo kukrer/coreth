@@ -6,10 +6,10 @@ package evm
 import (
 	"fmt"
 
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/constants"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/utils/formatting/address"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/constants"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/utils/formatting/address"
 	"github.com/ethereum/go-ethereum/common"
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 )

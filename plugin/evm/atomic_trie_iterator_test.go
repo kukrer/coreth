@@ -11,6 +11,7 @@ import (
 	"github.com/kukrer/savannahnode/database/versiondb"
 	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/savannahnode/utils"
+	"github.com/kukrer/savannahnode/utils/logging"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 )

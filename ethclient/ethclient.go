@@ -34,7 +34,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/accounts/abi/bind"
 	"github.com/kukrer/coreth/core/types"
 	"github.com/kukrer/coreth/interfaces"

@@ -6,7 +6,7 @@ package params
 import (
 	"math/big"
 
-	"github.com/kukrer/savannahgo/utils/units"
+	"github.com/kukrer/savannahnode/utils/units"
 )
 
 // Minimum Gas Price

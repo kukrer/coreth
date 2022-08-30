@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/kukrer/savannahgo/database/memdb"
-	"github.com/kukrer/savannahgo/database/versiondb"
+	"github.com/kukrer/savannahnode/database/memdb"
+	"github.com/kukrer/savannahnode/database/versiondb"
 
 	"github.com/kukrer/coreth/ethdb/memorydb"
 	"github.com/kukrer/coreth/plugin/evm/message"

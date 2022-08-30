@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"

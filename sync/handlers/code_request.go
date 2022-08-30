@@ -7,8 +7,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/kukrer/coreth/core/rawdb"
 	"github.com/kukrer/coreth/ethdb"

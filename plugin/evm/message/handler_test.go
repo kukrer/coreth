@@ -6,7 +6,7 @@ package message
 import (
 	"testing"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/stretchr/testify/assert"
 )

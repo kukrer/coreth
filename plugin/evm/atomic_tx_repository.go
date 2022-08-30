@@ -12,13 +12,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/database"
-	"github.com/kukrer/savannahgo/database/prefixdb"
-	"github.com/kukrer/savannahgo/database/versiondb"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/units"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/database"
+	"github.com/kukrer/savannahnode/database/prefixdb"
+	"github.com/kukrer/savannahnode/database/versiondb"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/units"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 )
 
 const (

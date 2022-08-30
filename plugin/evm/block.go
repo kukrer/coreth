@@ -15,9 +15,9 @@ import (
 	"github.com/kukrer/coreth/core/types"
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow/choices"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow/choices"
 )
 
 var (

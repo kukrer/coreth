@@ -28,7 +28,7 @@
 package miner
 
 import (
-	"github.com/kukrer/savannahgo/utils/timer/mockable"
+	"github.com/kukrer/savannahnode/utils/timer/mockable"
 	"github.com/kukrer/coreth/consensus"
 	"github.com/kukrer/coreth/core"
 	"github.com/kukrer/coreth/core/types"

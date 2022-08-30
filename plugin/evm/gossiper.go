@@ -9,14 +9,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kukrer/savannahgo/codec"
+	"github.com/kukrer/savannahnode/codec"
 
 	"github.com/kukrer/coreth/peer"
 
-	"github.com/kukrer/savannahgo/cache"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/cache"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"

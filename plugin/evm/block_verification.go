@@ -9,7 +9,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	safemath "github.com/kukrer/savannahgo/utils/math"
+	safemath "github.com/kukrer/savannahnode/utils/math"
 
 	"github.com/kukrer/coreth/constants"
 	"github.com/kukrer/coreth/core/types"

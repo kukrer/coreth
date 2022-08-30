@@ -4,10 +4,10 @@
 package message
 
 import (
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/codec/linearcodec"
-	"github.com/kukrer/savannahgo/utils/units"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/codec/linearcodec"
+	"github.com/kukrer/savannahnode/utils/units"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 )
 
 const (

@@ -10,7 +10,7 @@ import (
 
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/core/rawdb"
 	"github.com/kukrer/coreth/ethdb/memorydb"
 	"github.com/kukrer/coreth/plugin/evm/message"

@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/core/types"
 	"github.com/kukrer/coreth/plugin/evm/message"
 	"github.com/kukrer/coreth/sync/handlers"

@@ -9,7 +9,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/core/rawdb"
 	"github.com/kukrer/coreth/core/state/snapshot"
 	"github.com/kukrer/coreth/core/types"

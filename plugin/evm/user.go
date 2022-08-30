@@ -7,9 +7,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kukrer/savannahgo/database/encdb"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/crypto"
+	"github.com/kukrer/savannahnode/database/encdb"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/crypto"
 	"github.com/ethereum/go-ethereum/common"
 )
 

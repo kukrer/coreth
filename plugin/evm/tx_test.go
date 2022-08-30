@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/snow"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/snow"
 	"github.com/kukrer/coreth/params"
 )
 

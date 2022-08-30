@@ -7,10 +7,10 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 
 	"github.com/kukrer/coreth/trie"
 	"github.com/ethereum/go-ethereum/common"

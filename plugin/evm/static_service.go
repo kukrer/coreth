@@ -7,7 +7,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/kukrer/savannahgo/utils/formatting"
+	"github.com/kukrer/savannahnode/utils/formatting"
 	"github.com/kukrer/coreth/core"
 )
 

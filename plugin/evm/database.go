@@ -4,7 +4,7 @@
 package evm
 
 import (
-	"github.com/kukrer/savannahgo/database"
+	"github.com/kukrer/savannahnode/database"
 	"github.com/kukrer/coreth/ethdb"
 )
 

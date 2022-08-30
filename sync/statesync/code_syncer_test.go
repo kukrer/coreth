@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/kukrer/savannahgo/utils"
+	"github.com/kukrer/savannahnode/utils"
 	"github.com/kukrer/coreth/core/rawdb"
 	"github.com/kukrer/coreth/ethdb/memorydb"
 	"github.com/kukrer/coreth/plugin/evm/message"

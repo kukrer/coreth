@@ -9,9 +9,9 @@ import (
 
 	"github.com/kukrer/coreth/params"
 
-	"github.com/kukrer/savannahgo/snow"
-	commonEng "github.com/kukrer/savannahgo/snow/engine/common"
-	"github.com/kukrer/savannahgo/utils/timer"
+	"github.com/kukrer/savannahnode/snow"
+	commonEng "github.com/kukrer/savannahnode/snow/engine/common"
+	"github.com/kukrer/savannahnode/utils/timer"
 	"github.com/kukrer/coreth/core"
 	"github.com/ethereum/go-ethereum/log"
 )

@@ -8,9 +8,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/kukrer/savannahgo/ids"
-	utils_math "github.com/kukrer/savannahgo/utils/math"
-	"github.com/kukrer/savannahgo/version"
+	"github.com/kukrer/savannahnode/ids"
+	utils_math "github.com/kukrer/savannahnode/utils/math"
+	"github.com/kukrer/savannahnode/version"
 
 	"github.com/ethereum/go-ethereum/log"
 

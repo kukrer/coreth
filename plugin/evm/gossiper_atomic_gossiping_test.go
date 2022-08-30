@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 
 	"github.com/stretchr/testify/assert"
 

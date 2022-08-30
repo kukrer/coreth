@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/kukrer/savannahgo/utils/logging"
-	"github.com/kukrer/savannahgo/utils/ulimit"
-	"github.com/kukrer/savannahgo/vms/rpcchainvm"
+	"github.com/kukrer/savannahnode/utils/logging"
+	"github.com/kukrer/savannahnode/utils/ulimit"
+	"github.com/kukrer/savannahnode/vms/rpcchainvm"
 
 	"github.com/kukrer/coreth/plugin/evm"
 )

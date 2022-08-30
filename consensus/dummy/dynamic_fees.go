@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kukrer/savannahgo/utils/wrappers"
+	"github.com/kukrer/savannahnode/utils/wrappers"
 	"github.com/kukrer/coreth/core/types"
 	"github.com/kukrer/coreth/params"
 	"github.com/ethereum/go-ethereum/common"

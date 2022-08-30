@@ -7,7 +7,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/ids"
 	"github.com/kukrer/coreth/consensus/dummy"
 	"github.com/kukrer/coreth/core"
 	"github.com/kukrer/coreth/core/types"

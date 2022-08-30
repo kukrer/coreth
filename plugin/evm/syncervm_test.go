@@ -14,14 +14,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/kukrer/savannahgo/chains/atomic"
-	"github.com/kukrer/savannahgo/database/manager"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/snow"
-	"github.com/kukrer/savannahgo/snow/choices"
-	commonEng "github.com/kukrer/savannahgo/snow/engine/common"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/utils/units"
+	"github.com/kukrer/savannahnode/chains/atomic"
+	"github.com/kukrer/savannahnode/database/manager"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/snow"
+	"github.com/kukrer/savannahnode/snow/choices"
+	commonEng "github.com/kukrer/savannahnode/snow/engine/common"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/utils/units"
 
 	"github.com/kukrer/coreth/accounts/keystore"
 	"github.com/kukrer/coreth/consensus/dummy"

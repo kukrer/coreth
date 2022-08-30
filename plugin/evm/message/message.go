@@ -7,12 +7,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kukrer/savannahgo/codec"
+	"github.com/kukrer/savannahnode/codec"
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/units"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/units"
 )
 
 const (

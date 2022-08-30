@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/kukrer/savannahgo/codec"
-	"github.com/kukrer/savannahgo/ids"
+	"github.com/kukrer/savannahnode/codec"
+	"github.com/kukrer/savannahnode/ids"
 )
 
 // Request represents a Network request type

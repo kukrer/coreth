@@ -9,13 +9,13 @@ import (
 
 	"github.com/ethereum/go-ethereum/log"
 
-	"github.com/kukrer/savannahgo/api"
-	"github.com/kukrer/savannahgo/ids"
-	"github.com/kukrer/savannahgo/utils/crypto"
-	"github.com/kukrer/savannahgo/utils/formatting"
-	"github.com/kukrer/savannahgo/utils/rpc"
+	"github.com/kukrer/savannahnode/api"
+	"github.com/kukrer/savannahnode/ids"
+	"github.com/kukrer/savannahnode/utils/crypto"
+	"github.com/kukrer/savannahnode/utils/formatting"
+	"github.com/kukrer/savannahnode/utils/rpc"
 
-	cjson "github.com/kukrer/savannahgo/utils/json"
+	cjson "github.com/kukrer/savannahnode/utils/json"
 )
 
 // Interface compliance

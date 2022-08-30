@@ -34,7 +34,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kukrer/savannahgo/utils/timer/mockable"
+	"github.com/kukrer/savannahnode/utils/timer/mockable"
 	"github.com/kukrer/coreth/accounts"
 	"github.com/kukrer/coreth/consensus"
 	"github.com/kukrer/coreth/consensus/dummy"
