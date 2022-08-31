@@ -2,8 +2,6 @@ module github.com/kukrer/coreth
 
 go 1.18
 
-replace github.com/kukrer/savannahnode => ../savannahnode
-
 require (
 	github.com/VictoriaMetrics/fastcache v1.10.0
 	github.com/cespare/cp v1.1.1
@@ -19,7 +17,6 @@ require (
 	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d
 	github.com/holiman/bloomfilter/v2 v2.0.3
 	github.com/holiman/uint256 v1.2.0
-	github.com/kukrer/savannahnode v0.0.0-00010101000000-000000000000
 	github.com/mattn/go-colorable v0.1.13
 	github.com/mattn/go-isatty v0.0.16
 	github.com/olekukonko/tablewriter v0.0.5
