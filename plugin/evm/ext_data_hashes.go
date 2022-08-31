@@ -15,11 +15,11 @@ var (
 	//go:embed mainnet_ext_data_hashes.json
 	rawMainnetExtDataHashes []byte
 	mainnetExtDataHashes    map[common.Hash]common.Hash
-)
+
 	//go:embed mainnet_ext_data_hashes.json
 	rawSavannahExtDataHashes []byte
 	savannahExtDataHashes    map[common.Hash]common.Hash
-)
+
 	//go:embed mainnet_ext_data_hashes.json
 	rawMarulaExtDataHashes []byte
 	marulaExtDataHashes    map[common.Hash]common.Hash
