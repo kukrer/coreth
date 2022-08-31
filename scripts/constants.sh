@@ -20,4 +20,4 @@ echo "Using branch: ${current_branch}"
 coreth_commit="$(git --git-dir="$CORETH_PATH/.git" rev-parse HEAD)"
 coreth_commit_id="${coreth_commit::8}"
 
-build_image_id=${BUILD_IMAGE_ID:-"$savannah_version-$coreth_commit_id"}
+build_image_id=${BUILD_IMAGE_ID:-"$savannahnode_version-$coreth_commit_id"}
