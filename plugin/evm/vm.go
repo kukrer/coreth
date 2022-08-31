@@ -50,10 +50,10 @@ import (
 	// inside of cmd/geth.
 	_ "github.com/kukrer/coreth/eth/tracers/native"
 
-	"github.com/kukrer/coreth/metrics"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/kukrer/coreth/metrics"
 
 	avalancheRPC "github.com/gorilla/rpc/v2"
 
@@ -379,12 +379,12 @@ func (vm *VM) Initialize(
 	case g.Config.ChainID.Cmp(params.AvalancheFujiChainID) == 0:
 		g.Config = params.AvalancheFujiChainConfig
 		extDataHashes = fujiExtDataHashes
-	case g.Config.ChainID.Cmp(params.AvalancheSavannahChainID) == 0:
-		g.Config = params.AvalancheSavannahChainConfig
-		extDataHashes = savannahExtDataHashes
-	case g.Config.ChainID.Cmp(params.AvalancheMarulaChainID) == 0:
-		g.Config = params.AvalancheMarulaChainConfig
-		extDataHashes = marulaExtDataHashes
+	// case g.Config.ChainID.Cmp(params.AvalancheSavannahChainID) == 0:
+	// 	g.Config = params.AvalancheSavannahChainConfig
+	// 	extDataHashes = savannahExtDataHashes
+	// case g.Config.ChainID.Cmp(params.AvalancheMarulaChainID) == 0:
+	// 	g.Config = params.AvalancheMarulaChainConfig
+	// 	extDataHashes = marulaExtDataHashes
 	case g.Config.ChainID.Cmp(params.AvalancheLocalChainID) == 0:
 		g.Config = params.AvalancheLocalChainConfig
 	}
