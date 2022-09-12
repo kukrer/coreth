@@ -16,7 +16,7 @@ require (
 	github.com/hashicorp/go-bexpr v0.1.11
 	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d
 	github.com/holiman/bloomfilter/v2 v2.0.3
-	github.com/holiman/uint256 v1.2.0
+	github.com/holiman/uint256 v1.2.1
 	github.com/kukrer/savannahnode v1.7.17
 	github.com/mattn/go-colorable v0.1.13
 	github.com/mattn/go-isatty v0.0.16
