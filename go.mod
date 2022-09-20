@@ -3,7 +3,7 @@ module github.com/kukrer/coreth
 go 1.18
 
 require (
-	github.com/VictoriaMetrics/fastcache v1.10.0
+	github.com/VictoriaMetrics/fastcache v1.12.0
 	github.com/cespare/cp v1.1.1
 	github.com/davecgh/go-spew v1.1.1
 	github.com/deckarep/golang-set v1.8.0
